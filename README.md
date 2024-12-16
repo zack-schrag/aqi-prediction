@@ -11,27 +11,35 @@ This project was developed as a personal learning exercise to understand the key
 The system is composed of three main pipelines:
 
 ```mermaid
-graph LR
-    subgraph Feature Pipeline
-        A[Weather API] --> B[Feature Processing]
-        C[AQI API] --> B
-        B --> D[(Feature Store)]
+graph TD
+    subgraph Pipelines
+        subgraph Feature
+            A[Weather API] --> B[Feature<br/>Processing]
+            C[AQI API] --> B
+        end
+        
+        subgraph Training
+            E[Data<br/>Preparation] --> F[LSTM<br/>Model] --> G[Model<br/>Training]
+        end
+        
+        subgraph Inference
+            I[Feature<br/>Loading] --> K[Prediction]
+            J[Model<br/>Loading] --> K
+        end
     end
     
-    subgraph Training Pipeline
-        D --> E[Data Preparation]
-        E --> F[LSTM Model]
-        F --> G[Model Training]
-        G --> H[(Model Registry)]
+    subgraph Storage
+        D[(Feature<br/>Store)]
+        H[(Model<br/>Registry)]
+        L[(Prediction<br/>Store)]
     end
     
-    subgraph Inference Pipeline
-        D --> I[Feature Loading]
-        H --> J[Model Loading]
-        I --> K[Prediction]
-        J --> K
-        K --> L[(Prediction Store)]
-    end
+    B --> D
+    D --> E
+    D --> I
+    G --> H
+    H --> J
+    K --> L
 ```
 
 ### Key Components
