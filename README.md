@@ -68,29 +68,23 @@ The project uses a simple file-based approach for ML system components:
 
 ## Getting Started
 
-1. Create a virtual environment:
-```bash
-python -m venv .venv
-source .venv/bin/activate  # On Unix/macOS
-```
-
-2. Install uv:
+1. Install uv:
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-3. Install dependencies:
+2. Install dependencies:
 ```bash
 uv sync
 ```
 
-4. Set up environment variables:
+3. Set up environment variables:
 ```bash
 cp .env.example .env
 # Edit .env with your AQI API key
 ```
 
-5. Run tests:
+4. Run tests:
 ```bash
 uv run pytest tests/
 ```
